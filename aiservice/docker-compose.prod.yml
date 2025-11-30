@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  aiservice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fitness-app/userservice:1.0
+    ports:
+      - "8083:8083"
+    restart: unless-stopped
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - JAVA_TOOL_OPTIONS=-XX:MaxRAMPercentage=75.0
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8083/actuator/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
