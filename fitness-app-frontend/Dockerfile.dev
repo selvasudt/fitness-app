@@ -1,0 +1,14 @@
+FROM node:18-alpine
+WORKDIR /app
+
+# Install deps
+COPY package*.json ./
+RUN npm ci
+
+# Copy rest (will be overridden by bind mount in docker-compose; safe to copy)
+COPY . .
+
+EXPOSE 5173
+
+# Default dev command (you can override)
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
