@@ -1,0 +1,33 @@
+spring:
+  logging:
+    level:
+      org.springframework.data.mongodb: DEBUG
+      com.mongodb: DEBUG
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/fitnessactivity
+      database: fitnessactivity   # explicit DB name to avoid fallback to 'test'
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 8082
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+rabbitmq:
+  exchange:
+    name: fitness_exchange
+  queue:
+    name: activity_queue
+  routing:
+    key: activity_tracking
+
+gemini:
+  api:
+    key: ${GEMINI_API_KEY}
