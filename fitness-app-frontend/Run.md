@@ -12,6 +12,10 @@ docker compose -f docker-compose.dev.yml up --build
 
 # open http://localhost:5173
 
+docker compose -f docker-compose.prod.yml up --build -d
+
+# open http://localhost:8080
+
 # stop the container
 
 docker stop fitness-app-prod
